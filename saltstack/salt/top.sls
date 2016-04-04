@@ -1,5 +1,6 @@
 base:
   '*':
     - common
-  'webserver':
+  'roles:webserver':
+    - match: grain
     - webserver
