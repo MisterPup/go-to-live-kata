@@ -13,6 +13,11 @@ wordpress:
     - user: {{ salt['pillar.get']('mysql-conf:user') }}
     - host: {{ salt['pillar.get']('mysql-conf:host') }}
 
+# We need to restart httpd in order to apply php changes in centos
+restart_apache:
+  module.run:
+    - name: service.restart
+    - m_name: {{ pillar['apache'] }}  # m_name gets passed to the execution module as "name"
 
 # Download the latest wordpress edition, uncompress it and delete the archive
 get_wordpress:
