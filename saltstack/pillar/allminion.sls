@@ -1,13 +1,21 @@
 # Common pillar values
+
 # mysql
 mysql-pkg: mysql-server
 mysql-conf:
-    name: wordpress
-    password: password
-    user: wordpress
-    host: localhost
+  name: wordpress
+  password: password
+  user: wordpress
+  host: localhost
 mysql-python-pkg: MySQL-python
 mysql-connector-python-pkg: mysql-connector-python
+
+# wordpress
+wp-conf:
+  title: development
+  admin_user: admin
+  admin_password: password
+  admin_email: c.pupparo@prova.com
 
 #php5-mysql php5 libapache2-mod-php5 php5-mcrypt php5-gd libssh2-php
 
