@@ -36,14 +36,14 @@ The solution provided is based on Vagrant and Saltstack:
 
   http://saltstack.com/
 
-The script will launch three virtual machines (vms), one master and two minions that are managed by the master.
+The script will launch three virtual machines, one master and two minions that are managed by the master.
 
 The master and one minion are configured with Ubuntu 14.04, while the other minion is configured with CentOS 6.7. In this way we want to demonstrate how Saltstack can be applied to different distros.
 
 
 After following the instructions in the "Guide" section, you will have two wordpress installations in both minions.
 
-Tests have been made with Virtualbox.
+Tests have been made with Virtualbox and Ubuntu as host.
 
 Please note that sensitive informations (password, private key) have been stored on the repository for simplicity.
 
@@ -60,7 +60,7 @@ Launch inside the folder with the Vagrantfile
 
     vagrant up
 
-This will create the three virtual machines (vms). Wait for the creation of the vms, then connect to the master
+This will create the three virtual machines (it will take several minutes). Wait for the creation of the vms, then connect to the master
 
     vagrant ssh master
 
@@ -68,7 +68,7 @@ Inside the master, launch the following command
 
     sudo salt '*' state.apply
 
-This will configure both minions with a wordpress installation.
+This will configure both minions with a wordpress installation (it will take several minutes).
 
 After the previous commands complete, go to the following url to visit the websites
 
@@ -79,4 +79,4 @@ After the previous commands complete, go to the following url to visit the websi
 If you append "wp-login.php" to the previous urls, you can go the administration area of the websites. The credentials are stored inside the file "pillar/allminion" in the following variables:
 
   * admin_user
-  * admin_password: password
+  * admin_password
