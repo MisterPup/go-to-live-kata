@@ -16,8 +16,6 @@ wp-conf:
   admin_user: admin
   admin_password: password
   admin_email: c.pupparo@prova.com
-  wp-folder-owner: wordpress
-  wp-folder-owner-fullname: Wordpress
 
 #php5-mysql php5 libapache2-mod-php5 php5-mcrypt php5-gd libssh2-php
 
