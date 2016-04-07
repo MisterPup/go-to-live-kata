@@ -51,5 +51,5 @@ config_wordpress:
 install_wordpress:
  cmd.run:
   - cwd: /var/www/html/wordpress/
-  - name: '/usr/local/bin/wp-cli core install --url=http://{{ salt['pillar.get']('minion:ip') }}/wordpress --title={{ salt['pillar.get']('wp-conf:title') }} --admin_user={{ salt['pillar.get']('wp-conf:admin_user') }} --admin_password={{ salt['pillar.get']('wp-conf:admin_password') }} --admin_email={{ salt['pillar.get']('wp-conf:admin_email') }} --allow-root'
+  - name: '/usr/local/bin/wp-cli core install --url=http://{{ salt['network.interfaces']()['eth1']['inet'][0]['address'] }}/wordpress --title={{ salt['pillar.get']('wp-conf:title') }} --admin_user={{ salt['pillar.get']('wp-conf:admin_user') }} --admin_password={{ salt['pillar.get']('wp-conf:admin_password') }} --admin_email={{ salt['pillar.get']('wp-conf:admin_email') }} --allow-root'
 #  - unless: ls /var/www/html/wordpress/
