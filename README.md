@@ -56,7 +56,7 @@ Prerequisite
 Guide
 =================================
 
-Launch inside the folder with the Vagrantfile
+Launch Vagrant inside the folder with the Vagrantfile
 
     vagrant up
 
