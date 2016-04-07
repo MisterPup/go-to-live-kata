@@ -16,6 +16,8 @@ wp-conf:
   admin_user: admin
   admin_password: password
   admin_email: c.pupparo@prova.com
+  wp-folder-owner: wordpress
+  wp-folder-owner-fullname: Wordpress
 
 #php5-mysql php5 libapache2-mod-php5 php5-mcrypt php5-gd libssh2-php
 
@@ -23,6 +25,7 @@ wp-conf:
 {% if grains['os_family'] == 'Debian' %}
 
 apache: apache2
+apache-user: www-data
 git: git-core
 editor: vim
 mysql-service: mysql
@@ -38,6 +41,7 @@ libssh2-php-pkg: libssh2-php
 {% elif grains['os_family'] == 'RedHat' %}
 
 apache: httpd
+apache-user: apache
 git: git
 editor: vim-enhanced
 mysql-service: mysqld

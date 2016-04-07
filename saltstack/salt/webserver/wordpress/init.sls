@@ -1,5 +1,5 @@
 # install and configure wordpress
-wordpress:
+wordpress-configuration:
   require:
     - sls: webserver.mysql
   mysql_database.present:
@@ -53,3 +53,31 @@ install_wordpress:
   - cwd: /var/www/html/wordpress/
   - name: '/usr/local/bin/wp-cli core install --url=http://{{ salt['network.interfaces']()['eth1']['inet'][0]['address'] }}/wordpress --title={{ salt['pillar.get']('wp-conf:title') }} --admin_user={{ salt['pillar.get']('wp-conf:admin_user') }} --admin_password={{ salt['pillar.get']('wp-conf:admin_password') }} --admin_email={{ salt['pillar.get']('wp-conf:admin_email') }} --allow-root'
 #  - unless: ls /var/www/html/wordpress/
+
+# Define owner of wordpress folder
+{{ salt['pillar.get']('wp-conf:wp-folder-owner') }}:
+  user.present:
+    - fullname: {{ salt['pillar.get']('wp-conf:wp-folder-owner-fullname') }}
+    - shell: /bin/bash
+    - home: /home/{{ salt['pillar.get']('wp-conf:wp-folder-owner') }}
+    - uid: 4000
+    - groups:
+      - users
+
+# Change permission of wordpress folder
+/var/www/html/wordpress/:
+  file.directory:
+    - user: {{ salt['pillar.get']('wp-conf:wp-folder-owner') }}
+    - group: {{ pillar['apache-user'] }}
+    - mode: 755
+    - recurse:
+      - user
+      - group
+      - mode
+
+# Change permission of wordpress configuration file
+/var/www/html/wordpress/wp-config.php:
+  file.managed:
+    - user: {{ salt['pillar.get']('wp-conf:wp-folder-owner') }}
+    - group: users
+    - mode: 600
