@@ -80,3 +80,7 @@ If you append "wp-login.php" to the previous urls, you can go the administration
 
   * admin_user
   * admin_password
+
+After you have finished testing, you can remove the virtual machines with the following command (execute in the same folder with Vagrantfile)
+
+    vagrant destroy
